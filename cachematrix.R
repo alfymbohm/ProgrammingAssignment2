@@ -1,7 +1,7 @@
 ## Together, these functions allow the creation of a matrix object that saves
 ## in cache its own inverse, for quick retrieval without recalculation.
 
-## Saves the matrix alongside its inverse in a list of length 4.
+## makeCacheMatrix saves the matrix alongside its inverse in a list of length 4.
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
@@ -16,9 +16,9 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## If its x argument's inverse is not set, this function calculates it,
-## otherwise it returns it taking it from the cache. Includes the option to demonstrate
-## time savings.
+## If its x argument's inverse is not set, cacheSolve function calculates it,
+## otherwise it returns it taking it from the cache.
+## Includes the option to demonstrate time savings.
 
 cacheSolve <- function(x, time=FALSE, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -34,18 +34,4 @@ cacheSolve <- function(x, time=FALSE, ...) {
   x$setinv(inv)
   if(time==TRUE) print(proc.time()-t0)
   inv
-}
-
-makeVector2 <- function(x = numeric()) {
-  m <- NULL
-  set <- function(y) {
-    x <<- y
-    m <<- NULL
-  }
-  get <- function() x
-  setmean <- function(mean) m <<- mean
-  getmean <- function() m
-  list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
 }
